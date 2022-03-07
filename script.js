@@ -30,7 +30,10 @@ const showArtists = (artists) => {
   const albumContainer = elementById("albums");
   albumContainer.innerHTML = '';
   console.log(artists);
-  
+  if (artists == null) {
+    error.innerText = 'Please give a valid artist';
+    return;
+  }
   const artistContainer = elementById("artists");
   artists.forEach((artist) => {
     const div = document.createElement("div");
