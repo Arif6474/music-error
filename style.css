@@ -216,3 +216,7 @@ header h1 {
   padding: 10px;
   color: var(--dark-gray);
 }
+#error {
+  color: rgb(151, 13, 13);
+  text-align: center;
+}
