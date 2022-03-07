@@ -1,5 +1,5 @@
 const elementById = (id) => {
-  document.getElementById(id);
+ return document.getElementById(id);
 };
 
 const handleSearch = () => {
@@ -8,10 +8,12 @@ const handleSearch = () => {
   fetch(url)
     .then((res) => res.json())
     .then((data) => showArtists(data));
+    keyword.value = '';
 };
 
 const showArtists = (data) => {
-  const artistContainer = elementById("artist");
+  console.log(data);
+  const artistContainer = elementById("artists");
   data?.artists?.forEach((artist) => {
     const div = document.createElement("div");
     div.classList.add("artist-card");
@@ -37,17 +39,19 @@ const showArtists = (data) => {
 };
 
 const fetchAlbums = (id) => {
-  const url = `theaudiodb.com/api/v1/json/2/album.php?i=${id}`;
+  console.log(id);
+  const url = `https://theaudiodb.com/api/v1/json/2/album.php?i=${id}`;
+  console.log(url);
   fetch(url)
-    .then((res) => res.JSON())
-    .then((data) => showAlbum(data));
+    .then((res) => res.json())
+    .then((data) => showAlbum(data.album));
   const artistContainer = elementById("artists");
   artistContainer.innerHTML = "";
 };
 
-const showAlbum = (data) => {
+const showAlbum = (albums) => {
   const albumContainer = elementById("albums");
-  album.forEach((item) => {
+  albums.forEach((album) => {
     const div = document.createElement("div");
     div.classList.add("album");
     div.innerHTML = `
